@@ -6,44 +6,63 @@
    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
      crossorigin=""/>
-   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
      crossorigin=""></script>
-  <title>Document</title>
-</head>
-<body>
-  <div id="map" style="height: 600px;"></div>
+     <title>Document</title>
+    </head>
+    <body>
+      <div id="map" style="height: 600px;"></div>
+      
+      <script>
+        markers = [];
+        function parseTuples(data)
+        {
+          // var number = 35.722344529568815;
+          // console.log(`type of number : ${typeof number}`);
+          for (const obj of data) {
+            points = [];
+            for (const key in obj) {
+              // console.log(`type of key/value: ${typeof key}/${typeof obj[key]} - ${key}:${+obj[key]}`);
+              points.push(+obj[key]);
+            }
+            console.log(`points : ${points}`);
+            markers.push(L.marker([points[0], points[1]]).addTo(map));
+            console.log(`markers : ${markers}`);
+            points = [];
+          }
+        }
+        tuple = {{data|tojson}}
+        parseTuples(tuple);
 
-  
-  <script>
-    function get_location(lat, long, map)
-    {
-      L.marker([lat, long]).addTo(map);
-    }
-    var map = L.map('map').setView([35.722344529568815, 51.335167637391336], 16);
-    // for(let i =0;i<"{{ test.length }}";i++){
-      // var marker = get_location("{{ lat }}", "{{ long }}", map);
-      // for (let i ; )
-      console.log("{{ test }}");
-    // var marker2 = get_location(38.6797061643871, 51.335167637391336, map);
-    // var marker3 = get_location(35.699725644323024, 51.33804433004012, map);
-    // var marker4 = get_location(35.722344529568815, 51.335167637391336, map);
-    // var marker = L.marker([35.722344529568815, 51.335167637391336]).addTo(map);
-    // var marker2 = L.marker([35.6797061643871, 51.420510209408484]).addTo(map);
-    // var marker3 = L.marker([35.699725644323024, 51.33804433004012]).addTo(map);
-    // var marker4 = L.marker([39.699725644323024, 59.33804433004012]).addTo(map);
-
-    var circle = L.circle([35.722344529568815, 51.335167637391336], {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5,
-    radius: 1500
-    }).addTo(map);
-
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
+        var map = L.map('map').setView([35.722344529568815, 51.335167637391336], 16);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+    // ---------------------------------------------------------------------------------------------
+    // function get_location(lat, long, map)
+    // {
+    //   L.marker([lat, long]).addTo(map);
+    // }
+    // for(let i =0;i<";i++){
+        // var marker = get_location("{{ lat }}", "{{ long }}", map);
+        // for (let i ; )
+        // console.log();
+      // var marker2 = get_location(38.6797061643871, 51.335167637391336, map);
+      // var marker3 = get_location(35.699725644323024, 51.33804433004012, map);
+      // var marker4 = get_location(35.722344529568815, 51.335167637391336, map);
+      // var marker = L.marker([35.722344529568815, 51.335167637391336]).addTo(map);
+      // var marker2 = L.marker([35.6797061643871, 51.420510209408484]).addTo(map);
+      // var marker3 = L.marker([35.699725644323024, 51.33804433004012]).addTo(map);
+      // var marker4 = L.marker([39.699725644323024, 59.33804433004012]).addTo(map);
+      
+      // var circle = L.circle([35.722344529568815, 51.335167637391336], {
+    // color: 'red',
+    // fillColor: '#f03',
+    // fillOpacity: 0.5,
+    // radius: 1500
+    // }).addTo(map);
   </script>
 </body>
 </html>
