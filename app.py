@@ -4,11 +4,6 @@ import sqlite3
 
 app = Flask(__name__)
 
-@app.route("/")
-def home():
-    test_list = [(35.722344529568815,51.420510209408484), (35.722344529568815 ,51.0510209408484 )]
-    return render_template("test.html", test=test_list)
-
 @app.route("/table")
 def create_table():
     test = barbers.create_table()
@@ -29,6 +24,10 @@ def write_data():
         barbers.create_barber(item,f"{item}", item, item, item , f"{item}", item , item)
     return "finish"
 
+@app.route("/")
+def home():
+    data_list = [ {"x": 35.722344529568815,"y": 51.420510209408484}, {"x":35.722344529568815 ,"y":51.0510209408484 }]
+    return render_template("test.html", data=data_list)
 
 @app.route("/print")
 def print_test():
