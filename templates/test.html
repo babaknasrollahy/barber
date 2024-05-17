@@ -16,26 +16,28 @@
       
       <script>
         markers = [];
-        function parseTuples(data)
+        function parseTuples(data, map)
         {
           // var number = 35.722344529568815;
           // console.log(`type of number : ${typeof number}`);
           for (const obj of data) {
             points = [];
-            for (const key in obj) {
-              // console.log(`type of key/value: ${typeof key}/${typeof obj[key]} - ${key}:${+obj[key]}`);
+            for (const key in obj)
               points.push(+obj[key]);
-            }
-            console.log(`points : ${points}`);
-            markers.push(L.marker([points[0], points[1]]).addTo(map));
+
+              console.log(`points : ${points}`);
+            markers.push(L.marker([points[0], points[1]]).addTo(map).bindPopup('<b>hello</b>').openPopup());
             console.log(`markers : ${markers}`);
             points = [];
           }
         }
         tuple = {{data|tojson}}
-        parseTuples(tuple);
 
         var map = L.map('map').setView([35.722344529568815, 51.335167637391336], 16);
+        // markers[0].bindPopup("<b>hello world</b>").openPopup();
+        // markers[1].bindPopup("<b>hello world</b>").openPopup();
+
+        parseTuples(tuple, map);
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
           maxZoom: 19,
           attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
