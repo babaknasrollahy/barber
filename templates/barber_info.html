@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Barber Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <h3 class="card-title text-center">Update Profile</h3>
+                    <form action="{{ url_for('barber_info') }}" method="post" id="userForm">
+                        {% set image, national_code,age , experience, about = result %}
+                        <div class="form-group">
+                            <label for="image">Image URL</label>
+                            <input type="file" class="form-control" id="image" name="image" value="{{ image or '' }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nationalCode">National Code</label>
+                            <input type="number" class="form-control" id="nationalCode" name="national_code" value="{{ national_code }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" class="form-control" id="age" name="age" value="{{ age }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="experience">Experience (Years)</label>
+                            <input type="number" class="form-control" id="experience" name="experience" value="{{ experience }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="about">About</label>
+                            <input type="text" class="form-control" id="about" name="about" value="{{ about or '' }}" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Update Profile</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

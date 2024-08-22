@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Shop</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <h3 class="card-title text-center">Create Shop</h3>
+                    <form action="{{ url_for('shop_info') }}" method="post" id="userForm">
+                        {% set image, location,shop_name ,about = result %}
+                        <div class="form-group">
+                            <label for="image">Image URL</label>
+                            <input type="file" class="form-control" id="image" name="image" value="{{ image or '' }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <input type="number" class="form-control" id="location" name="location" value="{{ location }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="shop_name">Shop Name</label>
+                            <input type="text" class="form-control" id="shop_name" name="shop_name" value="{{ shop_name or '' }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="about">About</label>
+                            <input type="text" class="form-control" id="about" name="about" value="{{ about or '' }}" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">Update Profile</button>
+                    </form>
+                </div>
+            </div>
+            <div class="profile-container"><a href="{{ url_for('list_models') }}">Set Models</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

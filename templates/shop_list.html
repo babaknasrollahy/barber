@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Listing</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+        }
+        .card {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .card img {
+            height: 200px;
+            object-fit: cover;
+        }
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        .card-text {
+            font-size: 1rem;
+        }
+        .shop-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .shop-card {
+            flex: 1 1 calc(33.333% - 20px); /* Three cards per row with 20px gap */
+            max-width: calc(33.333% - 20px);
+        }
+        @media (max-width: 768px) {
+            .shop-card {
+                flex: 1 1 calc(50% - 20px); /* Two cards per row with 20px gap for small screens */
+                max-width: calc(50% - 20px);
+            }
+        }
+        @media (max-width: 576px) {
+            .shop-card {
+                flex: 1 1 100%; /* One card per row with 20px gap for extra small screens */
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="text-center mb-4">Shop Listing</h1>
+    {% for item in data %}
+        {% set shop_id, user_name, image, shop_name = item %}
+        <div class="shop-container">
+            <div class="shop-card">
+                <div class="card">
+                    <!-- <input type="hidden" id="shop_id" name="shop_id" value="{{ shop_id }}" required> -->
+                    <img src="{{ image }}" class="card-img-top" alt="Shop Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ shop_name }}</h5>
+                        <p class="card-text">Owner: {{ user_name }}</p>
+                        <a class="redirect-button" href="/shops_models/{{ shop_id }}"><button>Times</button></a>
+                    </div>
+                </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

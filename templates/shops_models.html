@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Profile - Models</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+        }
+        .card {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .card img {
+            height: 200px;
+            object-fit: cover;
+        }
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        .card-text {
+            font-size: 1rem;
+        }
+        .model-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .model-card {
+            flex: 1 1 calc(33.333% - 20px); /* Three cards per row with 20px gap */
+            max-width: calc(33.333% - 20px);
+        }
+        @media (max-width: 768px) {
+            .model-card {
+                flex: 1 1 calc(50% - 20px); /* Two cards per row with 20px gap for small screens */
+                max-width: calc(50% - 20px);
+            }
+        }
+        @media (max-width: 576px) {
+            .model-card {
+                flex: 1 1 100%; /* One card per row with 20px gap for extra small screens */
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    {% set shop_name = data[0][3] %}
+    <h1 class="text-center mb-4">Models of {{ shop_name }}</h1>
+    {% for item in data %}
+        {% set model_name, price, time, shop_name , model_id, shop_id = item %}
+    
+    <div class="model-container">
+        <div class="model-card">
+            <div class="card">
+                <img src="https://via.placeholder.com/200" class="card-img-top" alt="Model Image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ model_name }}</h5>
+                    <p class="card-text">Price: {{ price }}</p>
+                    <p class="card-text">Duration Time: {{ time }} (minute)</p>
+                    <p class="card-text">ShopName: {{ shop_name }}</p>
+                </div>
+            </div>
+            <a class="btn btn-md-3 btn-info" href="/shop_models/{{ shop_id }}/{{model_id}}/get_time">get_time</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

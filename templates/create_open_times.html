@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Model</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <h3 class="card-title text-center">Create Open Time</h3>
+                    <form action="{{ url_for('create_open_times') }}" method="post">
+                    <div class="form-group">
+                        <label for="base_model">Day</label>
+                        <select class="form-control" id="day" name="day" required>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
+                                <option value="Saturday">Saturday</option>
+                                <option value="Sunday">Sunday</option>
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                        </select>
+                        <div class="form-group">
+                            <label for="modelName">Start Time</label>
+                            <input type="time" class="form-control" id="start_time" name="start_time" required>                        </div>
+                        <div class="form-group">
+                            <label for="price">End Time</label>
+                            <input type="time" class="form-control" id="end_time" name="end_time" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Create Open Time</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('modelForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let modelName = document.getElementById('modelName').value;
+            let price = document.getElementById('price').value;
+            let time = document.getElementById('time').value;
+
+            if (!modelName || !price || !time) {
+                alert("All fields are required!");
+                return;
+            }
+
+            if (price <= 0) {
+                alert("Please enter a valid price.");
+                return;
+            }
+
+            alert("Model created successfully!");
+        });
+    </script>
+</body>
+</html>

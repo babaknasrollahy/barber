@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Model</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <h3 class="card-title text-center">Create Base Model</h3>
+                    <form action="{{ url_for('create_base_model') }}" method="post">
+                        <div class="form-group">
+                            <label for="modelName">Model Name</label>
+                            <input type="text" class="form-control" id="model_name" name="model_name" value="{{ model_name | default('') }}" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Create Base Model</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('modelForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let modelName = document.getElementById('modelName').value;
+            let price = document.getElementById('price').value;
+            let time = document.getElementById('time').value;
+
+            if (!modelName || !price || !time) {
+                alert("All fields are required!");
+                return;
+            }
+
+            if (price <= 0) {
+                alert("Please enter a valid price.");
+                return;
+            }
+
+            alert("Model created successfully!");
+        });
+    </script>
+</body>
+</html>

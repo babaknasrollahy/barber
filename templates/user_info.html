@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .profile-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 400px;
+        }
+        .profile-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #343a40;
+        }
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        .profile-info {
+            font-size: 18px;
+            color: #343a40;
+            margin-bottom: 10px;
+        }
+        .profile-info span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    {% set user_id, avatar , user_name , number, email, gender, full_name, role = data %}
+    <div class="container">
+        <div class="profile-container">
+            <div class="profile-title">User Profile</div>
+            <div class="text-center">
+                <img src="path/to/avatar.jpg" alt="Avatar" class="profile-avatar" id="profileAvatar">
+            </div>
+            <div class="profile-info"><span>Username:</span> <span id="profileUsername">{{ user_name }}</span></div>
+            <div class="profile-info"><span>Number:</span> <span id="profileNumber">{{ number }}</span></div>
+            <div class="profile-info"><span>Email:</span> <span id="profileEmail">{{ email }}</span></div>
+            <div class="profile-info"><span>Gender:</span> <span id="profileGender">{{ gender }}</span></div>
+            <div class="profile-info"><span>Full Name:</span> <span id="profileFullName">{{ full_name }}</span></div>
+        </div>
+    </div>
+    {% if role == 1 %}
+        <div class="profile-container"><a href="{{ url_for('create_shop') }}">create shop</a>            
+        </div>
+    {% endif %}
+
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Mock data for demonstration, replace with actual data in a real application
+        // const userData = {
+        //     avatar: 'path/to/avatar.jpg', // Path to the avatar image
+        //     userName: 'JohnDoe',
+        //     number: 1234567890,
+        //     email: 'john.doe@example.com',
+        //     password: 'password123', // Real application should not expose password like this
+        //     gender: 'Male',
+        //     fullName: 'John Doe'
+        // };
+
+        // document.getElementById('profileAvatar').src = userData.avatar;
+        // document.getElementById('profileUsername').innerText = userData.userName;
+        // document.getElementById('profileNumber').innerText = userData.number;
+        // document.getElementById('profileEmail').innerText = userData.email;
+        // document.getElementById('profilePassword').innerText = '*'.repeat(userData.password.length);
+        // document.getElementById('profileGender').innerText = userData.gender;
+        // document.getElementById('profileFullName').innerText = userData.fullName;
+    </script>
+</body>
+</html>
