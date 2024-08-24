@@ -27,14 +27,9 @@
                     <form action="{{ url_for('create_open_times') }}" method="post">
                     <div class="form-group">
                         <label for="base_model">Day</label>
-                        <select class="form-control" id="day" name="day" required>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
-                                <option value="Saturday">Saturday</option>
-                                <option value="Sunday">Sunday</option>
-                                <option value="Monday">Monday</option>
-                                <option value="Tuesday">Tuesday</option>
-                                <option value="Wednesday">Wednesday</option>
-                                <option value="Thursday">Thursday</option>
-                                <option value="Friday">Friday</option>
+                        <div class="form-group">
+                            <input type="date" class="from-control" id="date" name="date">
+                        </div>
                         </select>
                         <div class="form-group">
                             <label for="modelName">Start Time</label>

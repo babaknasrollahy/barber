@@ -17,7 +17,6 @@ def create_table():
                             time VARCHAR(800),
                             create_time TIMESTAMP DEFAULT (DATETIME('now', 'localtime'))
                             );"""
-
         cursor.execute(query)
         print("after")
         db.commit()
